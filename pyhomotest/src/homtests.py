@@ -8,24 +8,47 @@ import pandas as pd
 Eq. 4.3
 '''
 def getWeightedLMoments(regionalDurationStatisticsDF):
-    lr=0.
+    l2r=0.
     tr=0.
     t3r=0.
     t4r=0.
     sumN = 0.
+    sumNT = 0.
     
     for row in regionalDurationStatisticsDF.itertuples():
-        lr += row.nyears*row.l2
+        l2r += row.nyears*row.l2/row.l1
         tr += row.nyears*row.t
         t3r += row.nyears*row.t3
         t4r += row.nyears*row.t4
         sumN += row.nyears
-    
-    lr = lr/sumN
+
+    l2r = l2r/sumN
     tr = tr/sumN
     t3r = t3r/sumN
     t4r = t4r/sumN
-    return {'lr':lr, 'tr':tr, 't3r':t3r, 't4r':t4r}
+    return {'l2r':l2r, 'tr':tr, 't3r':t3r, 't4r':t4r}
+
+
+def calculateWeightedLMoments(nYears=None, l2=None, t=None, t3=None, t4=None ):
+    l2r = 0.
+    tr = 0.
+    t3r = 0.
+    t4r = 0.
+    sumN = 0.
+
+    for i in len(nYears):
+        nyrs = nYears[i]
+        l2r += nyrs * l2[i]
+        tr += nyrs * t[i]
+        t3r += nyrs * t3[i]
+        t4r += nyrs * t4[i]
+        sumN += nyrs
+
+    l2r = l2r / sumN
+    tr = tr / sumN
+    t3r = t3r / sumN
+    t4r = t4r / sumN
+    return {'l2r': l2r, 'tr': tr, 't3r': t3r, 't4r': t4r}
 
 '''
 Extracted from the distr.py - line 462 

@@ -1,6 +1,7 @@
 
 from scipy.stats import f
 import numpy as np
+import pandas as pd
 from numpy.linalg import inv
 
 
@@ -83,6 +84,7 @@ def lmrdiscord(sites=None, t2=None, t3=None, t4=None, alpha1=0.10, alpha2=0.01):
     Dalpha2 = np.ones(nsites) * D2_by_Fdist
     Dcrit = np.ones(nsites) * Dcrit
     
-    retvalDf = pd.DataFrame({'site':sites, 't2':t2, 't3':t3, 't4':t4,'D':D, 'Dmax':Dmax, 'Dalpha1':Dalpha1, 'Dalpha2':Dalpha2, 'Dcrit':Dcrit,'signif':signif})
+    retvalDf = pd.DataFrame({'site':sites, 't2':t2, 't3':t3, 't4':t4,'D':D, 'Dmax':Dmax, 'Dalpha1':Dalpha1, \
+                             'Dalpha2':Dalpha2, 'Dcrit':Dcrit,'signif':signif, 'isD':isD})
     
     return retvalDf

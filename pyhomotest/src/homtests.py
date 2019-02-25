@@ -29,7 +29,7 @@ def getWeightedLMoments(regionalDurationStatisticsDF):
     return {'l2r':l2r, 'tr':tr, 't3r':t3r, 't4r':t4r}
 
 
-def calculateWeightedLMoments(nYears=None, l2=None, t=None, t3=None, t4=None ):
+def calculateWeightedLMoments(nYears=None, l1=None, l2=None, t=None, t3=None, t4=None ):
     l2r = 0.
     tr = 0.
     t3r = 0.
@@ -38,7 +38,7 @@ def calculateWeightedLMoments(nYears=None, l2=None, t=None, t3=None, t4=None ):
 
     for i in len(nYears):
         nyrs = nYears[i]
-        l2r += nyrs * l2[i]
+        l2r += nyrs * l2[i]/l1[i]
         tr += nyrs * t[i]
         t3r += nyrs * t3[i]
         t4r += nyrs * t4[i]
